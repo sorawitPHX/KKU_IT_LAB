@@ -8,9 +8,9 @@ def addVehicle():
                   '3': 'Truck'}
     
     while True: #Input and Error Check
-        user_vehic_id = input('Enter vehicle id: ')
+        user_vehic_id = input('Enter vehicle id: ').replace(' ', '')
         user_type = input('Enter type of vehicle [1:Sedan, 2:Van, 3:Truck]: ')
-        if user_type not in vehic_type.keys() or user_vehic_id == '':
+        if user_type not in vehic_type.keys() or user_vehic_id.isspace():
             print('-- Invalid Try again -- ')
             continue
         else: break
@@ -33,12 +33,12 @@ def showVehicle(mode_show=0):
     count = len(file_copy)
     if count != 0:
         if mode_show==0: # Menu2
-            print(f'{"ID":20}{"Type"}')
+            print(f'{"ID":20} {"Type"}')
             print('-'*25)
             for line in file_copy:
                 line = line.replace('\n', '')
                 d, t = line.split(' ')
-                print(f'{d:20}{t:20}')
+                print(f'{d:20} {t:20}')
             print(f'The number of vehicle is: {count}') 
              
         elif mode_show==1: # Menu3

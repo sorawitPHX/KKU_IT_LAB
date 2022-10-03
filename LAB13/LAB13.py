@@ -3,19 +3,22 @@ import os
 
 #Menu1
 def addVehicle():
-    vehic_type = {'1': 'Sedan',
+    store_type = {'1': 'Sedan',
                   '2': 'Van',
                   '3': 'Truck'}
     
     while True: #Input and Error Check
-        user_vehic_id = input('Enter vehicle id: ').replace(' ', '')
-        user_type = input('Enter type of vehicle [1:Sedan, 2:Van, 3:Truck]: ')
-        if user_type not in vehic_type.keys() or user_vehic_id.isspace():
+        try:
+            user_vehic_id = input('Enter vehicle id: ').replace(' ', '')
+            if user_vehic_id.isspace() or user_vehic_id == str(): raise
+            user_type = input('Enter type of vehicle [1:Sedan, 2:Van, 3:Truck]: ')
+            if user_type not in store_type.keys(): raise
+        except:
             print('-- Invalid Try again -- ')
             continue
         else: break
     
-    user_type = vehic_type[user_type]
+    user_type = store_type[user_type]
     with open('vehicle.txt', mode='a') as file: #Apeend Text to File(vehicle.txt)
         car = f'{user_vehic_id} {user_type}\n'
         file.writelines(car)
@@ -80,19 +83,27 @@ def main(show_menu=1):
             5. Exit
             ''')
         
-    menu = {'1': addVehicle,
-            '2': lambda : showVehicle(mode_show=0),
-            '3': lambda : showVehicle(mode_show=1),
-            '4': clearFile,
-            '5': exit}
+    menu = {1: addVehicle,
+            2: lambda : showVehicle(mode_show=0),
+            3: lambda : showVehicle(mode_show=1),
+            4: clearFile,
+            5: exit}
     
     while True:
         if show_menu==1:
             showMenu()
         while True: #Input and Error Check
-            user = input('Select menu number [1-5]: ')
-            if user not in menu.keys() or user == '': 
-                print('-- Invalid Try again -- ')
+            try:
+                user = int(input('Select menu number [1-5]: '))
+                if user not in menu.keys(): raise Exception
+            except ValueError:
+                print('-- Please Input Number --')
+                continue
+            except Exception:
+                print('-- Not in menu Please try again --')
+                continue
+            except:
+                print('-- Invalid Input Try Again --')
                 continue
             else: break
         print('')

@@ -1,0 +1,11 @@
+At line __, an invalid data is found, and it was skipped. __
+
+The data in file constain __ orders
+
+__ x __ items x __ baht = __ baht
+
+Total sales __ baht
+
+Check data at Line __
+
+Cannot open file

@@ -1,6 +1,6 @@
 receipt, product, unit price, quantity
 RC001, Rubber, 12, 1
 RC002, Ruler, 6
-RC003, Pencil, 3,
+RC003, Pencil, 3, 3
 RC004, Pencil, 3, 1
 RC005, Papers, 10, 1

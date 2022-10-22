@@ -5,8 +5,7 @@ def addVehic():
     user_id = input('Enter vehicle id: ')
     user_type = int(input('Enter vehicle type [1:Sedan, 2:Van, 3:Truck]: '))
     select_type = store_type[user_type]
-    file.write(f'{user_id} - {select_type}\n')
-
+    file.write(f'{user_id} {select_type}\n')
 
 def showVehic():
     if file.tell() == 0:
@@ -15,13 +14,12 @@ def showVehic():
         file.seek(0, 0)
         for line in file:
             line = line.replace('\n', '')
-            v_id, v_type = line.split(' - ')
+            v_id, v_type = line.split(' ')
             print(f'{v_id} {v_type}')
         file.seek(0, 0)
         count = len( file.readlines() )
         print(f'The number of vehicle {count}')
 
-            
 def showVehicByType():
     if file.tell() == 0:
         print('-- No data --')
@@ -32,7 +30,7 @@ def showVehicByType():
         file.seek(0)
         for line in file:
             line = line.replace('\n', '')
-            v_id, v_type = line.split(' - ')
+            v_id, v_type = line.split(' ')
             if select == v_type:
                 c += 1
                 print(f'ID: {v_id}')
@@ -41,13 +39,11 @@ def showVehicByType():
         else:
             print('-- No data --')
 
-
 def Exit():
     file.close()
     exit()
-
     
-def main():
+def mainmenu():
     def showMenu():
         print('''
           #### Select Menu ####
@@ -63,16 +59,8 @@ def main():
     while True:
         showMenu()
         select = int(input('Select menu number [1-4]: '))
-        if select == 1:
-            addVehic()
-        elif select == 2:
-            showVehic()
-        elif select == 3:
-            showVehicByType()
-        elif select == 4:
-            Exit()
-        else:
-            print('-- Not in menu Try again --')
+        menu[ select ]()
+        input('กด Enter เพื่อดำเนินการต่อ...')
 
 #เรียกใช้ main
-main()
+mainmenu()

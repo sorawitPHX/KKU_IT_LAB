@@ -1,2 +1,1 @@
-LX12345 - Truck
-DP989 - Sedan
+TK1234 Sedan
